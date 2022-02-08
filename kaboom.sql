@@ -85,8 +85,13 @@ JOIN segments
 ON channel_costs.customerid = segments.customerid;
 
 # View channel_segment
-SELECT *
-FROM channel_segment;
+SELECT 
+	channel_id,
+    Segment,
+    SUM(cost_eur)/SUM(revenue_eur) AS CRR
+FROM channel_segment
+GROUP BY channel_id, Segment
+ORDER BY SUM(cost_eur)/SUM(revenue_eur);
 
 ######### COMPANY HEALTH #########
 
